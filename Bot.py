@@ -9,7 +9,7 @@ driver.get('https://web.whatsapp.com/')
 time.sleep(15)
 #Definir contatos/grupos e mensagem a ser enviada
 
-contatos_txt = open("contatos.txt", "r") # Possibilita o uso de arquivo de texto para que o cliente possa alterar quantas vezes quiser os destinatarios
+contatos_txt = open("contatos.txt", "r", encoding = "utf-8") # Possibilita o uso de arquivo de texto para que o cliente possa alterar quantas vezes quiser os destinatarios
 contatos = []
 
 for linha in contatos_txt:
@@ -17,7 +17,7 @@ for linha in contatos_txt:
     contatos.append(linha)
 contatos_txt.close()   
 
-mensagem_txt = open("mensagem.txt", "r")
+mensagem_txt = open("mensagem.txt", "r", encoding = "utf-8")
 mensagem = []
 for letra in mensagem_txt:
     mensagem.append(letra)
