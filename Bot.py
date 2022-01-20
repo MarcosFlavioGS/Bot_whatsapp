@@ -8,9 +8,23 @@ driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.get('https://web.whatsapp.com/')
 time.sleep(15)
 #Definir contatos/grupos e mensagem a ser enviada
-contatos = ['Teste de bot', 'Mozão', 'Marcos GSil', 'Pub']
-mensagem = 'Olá, tudo bem ? Essa é uma mensagem automatica de teste do meu super bot. Se você está recebendo essa menságem, sinta-se lisongeado. Grato'
+
+contatos_txt = open("contatos.txt", "r") # Possibilita o uso de arquivo de texto para que o cliente possa alterar quantas vezes quiser os destinatarios
+contatos = []
+
+for linha in contatos_txt:
+    linha = linha.strip()
+    contatos.append(linha)
+contatos_txt.close()   
+
+mensagem_txt = open("mensagem.txt", "r")
+mensagem = []
+for letra in mensagem_txt:
+    mensagem.append(letra)
+mensagem_txt.close()
+
 #buscar contatos/grupos
+
 def buscar_contato(contato):
     campo_pesquisa = driver.find_element_by_xpath('//div[contains(@class, "copyable-text selectable-text")]')
     time.sleep(3)
