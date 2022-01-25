@@ -23,7 +23,7 @@ for letra in mensagem_txt:
     mensagem.append(letra)
 mensagem_txt.close()
 
-filepath_txt = open("filepath.txt", "r", encoding ="utf-8")
+filepath_txt = open("filepath.txt", "r", encoding ="LATIN-1")
 filepath = []
 for char in filepath_txt:
     filepath.append(char)

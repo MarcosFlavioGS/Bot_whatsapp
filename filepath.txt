@@ -1,1 +1,1 @@
-/colocar o caminho do arquivo de imagem/vídeo
+C:/Usuários/mfpla/Imagens/celular/passarinho.jpg
