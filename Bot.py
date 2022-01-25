@@ -23,6 +23,11 @@ for letra in mensagem_txt:
     mensagem.append(letra)
 mensagem_txt.close()
 
+filepath_txt = open("filepath.txt", "r", encoding ="utf-8")
+filepath = []
+for char in filepath_txt:
+    filepath.append(char)
+filepath_txt.close()    
 #buscar contatos/grupos
 
 def buscar_contato(contato):
@@ -32,6 +37,17 @@ def buscar_contato(contato):
     campo_pesquisa.send_keys(contato)
     campo_pesquisa.send_keys(Keys.ENTER)
 
+#Enviar imagem
+def enviar_imagem(filepath):
+    driver.find_element_by_css_selector("span[data-icon='clip']").click()
+    attach = driver.find_element_by_css_selector("input[type='file']")
+    time.sleep(2)
+    attach.send_keys(filepath)
+    time.sleep(3)
+    send = driver.find_element_by_css_selector("span[data-icon='send']")
+    send.click()
+
+#Enviar mensagem
 def enviar_mensagem(mensagem):
     campo_mensagem = driver.find_elements_by_xpath('//div[contains(@class, "copyable-text selectable-text")]')
     campo_mensagem[1].click()
@@ -42,6 +58,7 @@ def enviar_mensagem(mensagem):
 
 for contato in contatos:   
     buscar_contato(contato)
+    enviar_imagem(filepath)
     enviar_mensagem(mensagem)
 #Campo de pesquisa "copyable-text selectable-text"
 #Campo de mensagem "copyable-text selectable-text"
