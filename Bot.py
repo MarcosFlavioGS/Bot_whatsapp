@@ -1,4 +1,5 @@
 #Importar bibliotecas
+import pyautogui
 from selenium import webdriver
 import time
 from webdriver_manager.chrome import ChromeDriverManager
@@ -26,6 +27,7 @@ mensagem_txt.close()
 filepath_txt = open("filepath.txt", "r", encoding ="LATIN-1")
 filepath = []
 for char in filepath_txt:
+    char = char.strip()
     filepath.append(char)
 filepath_txt.close()    
 #buscar contatos/grupos
@@ -37,15 +39,20 @@ def buscar_contato(contato):
     campo_pesquisa.send_keys(contato)
     campo_pesquisa.send_keys(Keys.ENTER)
 
-#Enviar imagem
+#Enviar imagem com pyautogui
 def enviar_imagem(filepath):
     driver.find_element_by_css_selector("span[data-icon='clip']").click()
-    attach = driver.find_element_by_css_selector("input[type='file']")
-    time.sleep(2)
-    attach.send_keys(filepath)
-    time.sleep(3)
+    attach = driver.find_element_by_css_selector("span[data-icon='attach-image']")
+    attach.click()
+    time.sleep(4)
+    # attach.send_keys(filepath)
+    for i in filepath:
+        pyautogui.write(i)
+        pyautogui.press('enter')
+        time.sleep(3)
     send = driver.find_element_by_css_selector("span[data-icon='send']")
     send.click()
+    time.sleep(4)
 
 #Enviar mensagem
 def enviar_mensagem(mensagem):
@@ -54,6 +61,7 @@ def enviar_mensagem(mensagem):
     time.sleep(3)
     campo_mensagem[1].send_keys(mensagem)
     campo_mensagem[1].send_keys(Keys.ENTER)
+    time.sleep(3)
 
 
 for contato in contatos:   
